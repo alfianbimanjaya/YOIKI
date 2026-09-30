@@ -748,6 +748,46 @@ def main():
         f"Candidates: {len(candidates)}"
     )
 
+    # ------------------------------------------------------------------
+    # DIRECT TELEGRAM DELIVERY TEST
+    # ------------------------------------------------------------------
+    # This deliberately sends a test message as soon as a candidate is
+    # detected. It does NOT wait for the next H1 bar.
+    #
+    # Purpose:
+    #   prove GitHub Secret -> Telegram API -> user chat works.
+    #
+    # This is TEST ONLY and does not modify the production V2.6 runner.
+    if not candidates.empty:
+        test_row = candidates.iloc[0]
+
+        test_ticker = str(test_row["ticker"]).upper()
+        test_signal_dt = pd.Timestamp(test_row["datetime"])
+        test_score = float(test_row["pred_calibrated"])
+        test_close = float(test_row["close"])
+        test_gap1h = float(test_row["gap_1h"])
+
+        direct_test_msg = (
+            "🧪 <b>YOIKI H1 V2.6 — TELEGRAM DELIVERY TEST</b>\n\n"
+            f"<b>{test_ticker}</b>\n"
+            f"Signal: <code>{test_signal_dt:%Y-%m-%d %H:%M}</code>\n"
+            f"P calibrated: <b>{test_score:.4f}</b>\n"
+            f"Signal close: <b>{fmt_price(test_close)}</b>\n"
+            f"Gap 1H: <b>{fmt_pct(test_gap1h)}</b>\n\n"
+            "✅ Candidate detected by GitHub Actions.\n"
+            "✅ Telegram API delivery test reached this stage.\n\n"
+            "⚠️ TEST ONLY — bukan production signal.\n"
+            "⚠️ BOT TIDAK MENEMPATKAN ORDER."
+        )
+
+        send_message(direct_test_msg)
+        print(
+            f"TELEGRAM DIRECT TEST: SENT | "
+            f"{test_ticker} | P={test_score:.4f}"
+        )
+    else:
+        print("TELEGRAM DIRECT TEST: NO CANDIDATE, MESSAGE NOT SENT")
+
     state = load_state()
 
     # 1) Resolve old pending signals first. This preserves the exact
