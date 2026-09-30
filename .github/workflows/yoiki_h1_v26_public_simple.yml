@@ -45,7 +45,7 @@ jobs:
       - name: Run YOIKI H1 V2.6
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHAT_ID: ${{ vars.TELEGRAM_CHAT_ID }}
           PYTHONUNBUFFERED: "1"
         run: python scripts/08_github_actions_h1_v26_once_simple.py
 
