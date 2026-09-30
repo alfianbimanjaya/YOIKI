@@ -73,7 +73,7 @@ def load_universe():
 
 
 def load_model():
-    meta = json.loads(Path(MODEL_META_FILE).read_text(encoding="utf-8"))
+    meta = json.loads(Path(MODEL_META_JSON).read_text(encoding="utf-8"))
     feature_cols = json.loads(Path(FEATURES_JSON).read_text(encoding="utf-8"))
     count = int(meta.get("feature_count", 0))
     if count and count != len(feature_cols):
