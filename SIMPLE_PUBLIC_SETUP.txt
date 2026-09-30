@@ -1,0 +1,109 @@
+YOIKI H1 V2.6 — SIMPLE PUBLIC GITHUB ACTIONS (NO GPG)
+
+THIS IS THE EASIEST VERSION.
+
+Public repository means:
+- Python source is public
+- model files are public
+- feature factory is public
+- seed H1 history is public
+- Telegram bot token is PRIVATE in GitHub Secrets
+
+STEP 1 — On your PC
+
+Copy this package into:
+C:\ALFIAN\_TRADING\SWING\
+
+Then run from the YOIKI root:
+
+python scripts\09_prepare_v26_public_assets_simple.py
+
+It creates:
+- universe_v26.csv
+- v26_initial_history.parquet
+
+STEP 2 — Create PUBLIC GitHub repository
+
+Example:
+yoiki-h1-v26
+
+STEP 3 — Put these files/folders into the repository
+
+Required:
+- h1_v2_config.py
+- 02_feature_factory_h1_v2.py
+- models_v2\
+  - lgbm_h1_v2.txt
+  - isotonic_calibrator_h1_v2.joblib
+  - feature_columns_h1_v2.json
+  - model_metadata_h1_v2.json
+  - selected_threshold_h1_v2.json
+- universe_v26.csv
+- v26_initial_history.parquet
+- scripts\08_github_actions_h1_v26_once_simple.py
+- scripts\09_prepare_v26_public_assets_simple.py
+- _EXECUTE_live_screener_h1_v26.py
+- _EXECUTE_Arealtime_telegram_h1_v26_USE_EXECUTE_SCREENER.py
+- .github\workflows\yoiki_h1_v26_public_simple.yml
+- requirements_online.txt
+
+DO NOT upload:
+- data\raw_h1_ohlcv_v2.parquet
+- telegram_config_v26.json
+- Telegram token
+
+STEP 4 — GitHub Secrets
+
+Repository -> Settings -> Secrets and variables -> Actions
+
+Create:
+TELEGRAM_BOT_TOKEN
+TELEGRAM_CHAT_ID
+
+Use the NEW BotFather token.
+
+STEP 5 — Push
+
+git init
+git branch -M main
+git remote add origin <YOUR_REPO_URL>
+git add .
+git status
+git commit -m "YOIKI H1 V2.6 online"
+git push -u origin main
+
+STEP 6 — Test
+
+GitHub -> Actions -> YOIKI H1 V2.6 Online Screener -> Run workflow
+
+Expected:
+Telegram OK
+Universe: ...
+candidates=...
+new_signal=...
+
+STEP 7 — Automatic
+
+Mon-Fri
+09:00-16:55 WIB
+every 5 minutes
+
+PC can be OFF.
+
+IMPORTANT:
+This version sacrifices IP secrecy for simplicity. Anyone can see the model
+and code. If that is acceptable, this is the easiest zero-cost deployment.
+
+The bot still uses the frozen V2.6 rules:
+P >= 0.4336
+gap_1h <= 1.50%
+next-open gap <= 0.10%
+TP +4%
+SL -2%
+BE +2.5%
+max hold 15 H1
+max 5 positions
+20% allocation
+
+GitHub scheduled workflows can experience delay, so compare with the PC bot
+for the first few sessions before turning the PC bot off permanently.

@@ -1,0 +1,13 @@
+# NEVER publish these local/raw files
+telegram_config_v26.json
+data/raw_h1_ohlcv_v2.parquet
+data/processed_v2/
+cloud_runtime/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

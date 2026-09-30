@@ -1,0 +1,46 @@
+{
+  "selected_threshold": 0.4336,
+  "selection_basis": "validation_event_driven_net_profit_with_precision_and_risk_constraints",
+  "score_definition": "pred_calibrated_isotonic",
+  "min_validation_trades": 50,
+  "min_validation_win_rate": 0.55,
+  "min_validation_profit_factor": 1.5,
+  "max_validation_drawdown_pct": -12.0,
+  "execution": {
+    "entry": "next_h1_open",
+    "buy_fee_pct": 0.0015,
+    "sell_fee_pct": 0.0025,
+    "slippage_pct": 0.001,
+    "tp_pct": 0.04,
+    "sl_pct": 0.02,
+    "be_trigger_pct": 0.025,
+    "max_holding": 15,
+    "max_positions": 5,
+    "position_allocation_pct": 0.2,
+    "lot_size": 100
+  },
+  "validation_summary": {
+    "threshold": 0.4336,
+    "trades": 69,
+    "wins": 41,
+    "win_rate_pct": 59.42028985507246,
+    "net_profit_pct": 34.388842056563654,
+    "net_profit_rp": 34388842.056563646,
+    "profit_factor": 1.7143827602733581,
+    "avg_trade_pct": 2.2323563530355885,
+    "max_drawdown_pct": -8.363733958025943,
+    "final_equity": 134388842.05656365
+  },
+  "final_test_summary": {
+    "threshold": 0.4336,
+    "trades": 113,
+    "wins": 62,
+    "win_rate_pct": 54.86725663716814,
+    "net_profit_pct": 118.01753064803097,
+    "net_profit_rp": 118017530.64803097,
+    "profit_factor": 2.2718639173052964,
+    "avg_trade_pct": 3.596711833154225,
+    "max_drawdown_pct": -7.126700309144029,
+    "final_equity": 218017530.64803097
+  }
+}
