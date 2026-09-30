@@ -3,7 +3,7 @@ name: YOIKI H1 V2.6 Online Screener
 on:
   workflow_dispatch:
   schedule:
-    - cron: "25 9 * * 1-5"
+    - cron: "*/5 9-10 * * 1-5"
       # 09:00-16:55 WIB, Monday-Friday
 
 permissions:
